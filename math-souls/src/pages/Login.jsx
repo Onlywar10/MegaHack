@@ -23,7 +23,13 @@ const Login = () => {
     const { error } = await supabase.auth.signOut();
   };
 
-  return <div className=""></div>;
+  return (
+    <div className="login-page-container">
+      <div className="login-input-container">
+        <div className="login-title">Login</div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
