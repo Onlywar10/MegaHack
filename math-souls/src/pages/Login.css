@@ -6,6 +6,12 @@ body {
     background-position: center top;
 }
 
+.login-input-container {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .login-title {
     color: white;
     font-family: "EB Garamond", serif;
