@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
-import { supabase } from "../supabase";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
+import { supabase } from "../supabase";
+import buttonBackground from "../assets/index";
 import "./Login.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   async function signUpNewUser() {
     const { data, error } = await supabase.auth.signUp({
       email: "example@email.com",
@@ -23,11 +28,49 @@ const Login = () => {
     const { error } = await supabase.auth.signOut();
   };
 
+  const handleLogin = async () => {
+    if (email != "" && password != "") {
+      console.log(email, password);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+      if (error) {
+        alert("Incorrect Email or Password");
+      }
+    } else {
+      alert("One field is empty");
+    }
+  };
+
   return (
-    <div className="login-page-container">
+    <div className="login-container">
+      <div className="login-title">You've Returned...</div>
       <div className="login-input-container">
-        <div className="login-title">Login</div>
+        <input
+          className="login-input-field"
+          type="text"
+          placeholder="Email..."
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <input
+          className="login-input-field"
+          type="password"
+          placeholder="Password..."
+          onChange={(event) => setPassword(event.target.value)}
+        />
       </div>
+      <button className="login-button" onClick={handleLogin}>
+        <img
+          src={buttonBackground}
+          alt="button"
+          className="login-button-image"
+        />
+        <div className="login-button-text">Login</div>
+      </button>
+      <Link className="sign-up-link" to="/register">
+        New around here?
+      </Link>
     </div>
   );
 };
