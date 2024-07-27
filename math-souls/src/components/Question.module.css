@@ -1,0 +1,9 @@
+/* src/components/Question.module.css */
+.questionTitle {
+    font-size: 2rem; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: white; /* Set the text color to white */
+    margin-bottom: 20px; /* Adjust the bottom margin */
+    text-align: center; /* Center the text horizontally */
+  }
+  
