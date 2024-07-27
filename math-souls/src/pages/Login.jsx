@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { supabase } from "../supabase";
 import buttonBackground from "../assets/index";
@@ -9,12 +9,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function signUpNewUser() {
-    const { data, error } = await supabase.auth.signUp({
-      email: "example@email.com",
-      password: "example-password",
-    });
-  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const getUser = async () => {
     const {
@@ -22,10 +21,10 @@ const Login = () => {
     } = await supabase.auth.getUser();
 
     console.log(user);
-  };
 
-  const signout = async () => {
-    const { error } = await supabase.auth.signOut();
+    if (user.id != null) {
+      navigate("/");
+    }
   };
 
   const handleLogin = async () => {
@@ -38,6 +37,8 @@ const Login = () => {
       if (error) {
         alert("Incorrect Email or Password");
       }
+
+      navigate("/");
     } else {
       alert("One field is empty");
     }
