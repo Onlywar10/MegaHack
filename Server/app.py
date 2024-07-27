@@ -65,6 +65,174 @@ def getQuestion():
                 questionType = "Square Root"
 
         # return questions for algebra
+        if (category == "algebra"):
+            list = [0, 1, 2, 3, 4]
+            index = random.choice(list)
+
+            if (index == 0):
+                problem, solution = mathgenerator.basic_algebra(10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Basic Algebra"
+            if (index == 1):
+                problem, solution = mathgenerator.combine_like_terms(10, 3, 5)
+
+                # check for only one nomial
+                while (problem.find("+") == -1):
+                    problem, solution = mathgenerator.combine_like_terms(
+                        10, 3, 5)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("{", "")
+                problem = problem.replace("}", "")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" + ", "+")
+                solution = solution.replace("{", "")
+                solution = solution.replace("}", "")
+
+                questionType = "Combining Like Terms"
+            if (index == 2):
+                problem, solution = mathgenerator.expanding(10, 10, 10, 10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Expanding Polynomials"
+            if (index == 3):
+                problem, solution = mathgenerator.linear_equations(2, 10, 10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Linear Equations"
+            if (index == 4):
+                problem, solution = mathgenerator.system_of_equations(
+                    10, 10, 10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                solution = solution.replace("$", "")
+
+                questionType = "System of Equations"
+
+        # return questions for geometry
+        if (category == "geometry"):
+            list = []
+            for i in range(12):
+                list.append(i)
+            index = random.choice(list)
+            index = 8
+            if (index == 0):
+                problem, solution = mathgenerator.area_of_circle(20)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("=", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Area of a Circle"
+            if (index == 1):
+                problem, solution = mathgenerator.area_of_triangle(10, 10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace(",", "")
+                problem = problem.replace("=", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Area of a Triangle"
+            if (index == 2):
+                problem, solution = mathgenerator.circumference(20)
+
+                # Check if answer is 0
+                while (solution == "0.0"):
+                    problem, solution = mathgenerator.circumference(20)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Circumference"
+            if (index == 3):
+                problem, solution = mathgenerator.perimeter_of_polygons(5)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("cm is: ", "")
+                # problem = problem.replace(" = ", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Perimeter of Polygons"
+            if (index == 4):
+                problem, solution = mathgenerator.perimeter_of_polygons(5)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("cm is: ", "")
+                # problem = problem.replace(" = ", "")
+                solution = solution.replace("$", "")
+
+                questionType = "Perimeter of Polygons"
+            if (index == 5):
+                problem, solution = mathgenerator.surface_area_cube(10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m is", "")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^2", "")
+
+                questionType = "Surface Area of a Cube"
+            if (index == 6):
+                problem, solution = mathgenerator.surface_area_cylinder(20, 10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m is", "")
+                problem = problem.replace("m ", " ")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^2", "")
+
+                questionType = "Surface Area of a Cylinder"
+            if (index == 7):
+                problem, solution = mathgenerator.surface_area_pyramid()
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m is", "")
+                problem = problem.replace("m, ", ", ")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^2", "")
+
+                questionType = "Surface Area of a Pyramid"
+            if (index == 8):
+                problem, solution = mathgenerator.surface_area_sphere(10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m ", " ")
+                # problem = problem.replace("m ", ", ")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^2", "")
+
+                questionType = "Surface Area of a Sphere"
+            if (index == 9):
+                problem, solution = mathgenerator.surface_area_sphere()
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m ", " ")
+                # problem = problem.replace("m ", ", ")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^2", "")
+
+                questionType = "Surface Area of a Sphere"
 
     return jsonify({
         "problem": problem,
