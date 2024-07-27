@@ -1,14 +1,19 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import QuestionPage from "./pages/QuestionPage";
+<<<<<<< HEAD
+=======
+import Login from "./pages/Login";
+>>>>>>> f06c9f1631d93611d776ecf3400197dc07315b4e
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/QuestionPage" element={<QuestionPage />} />
+<<<<<<< HEAD
+=======
+        <Route path="/login" element={<Login />} />
+>>>>>>> f06c9f1631d93611d776ecf3400197dc07315b4e
       </Routes>
     </BrowserRouter>
   );
