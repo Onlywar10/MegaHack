@@ -24,6 +24,7 @@ def getQuestion():
 
                 # return string cleanup
                 problem = problem.replace("$", "")
+                problem = problem.replace("=", "")
                 solution = solution.replace("$", "")
 
                 questionType = "Addition"
@@ -32,6 +33,7 @@ def getQuestion():
 
                 # return string cleanup
                 problem = problem.replace("$", "")
+                problem = problem.replace("=", "")
                 solution = solution.replace("$", "")
 
                 questionType = "Subtraction"
@@ -40,6 +42,7 @@ def getQuestion():
 
                 # return string cleanup
                 problem = problem.replace("$", "")
+                problem = problem.replace("=", "")
                 problem = problem.replace("\cdot", "*")
                 solution = solution.replace("$", "")
 
@@ -49,6 +52,7 @@ def getQuestion():
 
                 # return string cleanup
                 problem = problem.replace("$", "")
+                problem = problem.replace("=", "")
                 problem = problem.replace("\div", "/")
                 solution = solution.replace("$", "")
 
@@ -60,6 +64,7 @@ def getQuestion():
                 problem = problem.replace("$", "")
                 problem = problem.replace("\sqrt{", "√")
                 problem = problem.replace("}", "")
+                problem = problem.replace("=", "")
                 solution = solution.replace("$", "")
 
                 questionType = "Square Root"
@@ -117,6 +122,7 @@ def getQuestion():
 
                 # return string cleanup
                 problem = problem.replace("$", "")
+                problem = problem.replace("y.", "y")
                 solution = solution.replace("$", "")
 
                 questionType = "System of Equations"
@@ -127,7 +133,6 @@ def getQuestion():
             for i in range(12):
                 list.append(i)
             index = random.choice(list)
-            index = 8
             if (index == 0):
                 problem, solution = mathgenerator.area_of_circle(20)
 
@@ -223,16 +228,49 @@ def getQuestion():
 
                 questionType = "Surface Area of a Sphere"
             if (index == 9):
-                problem, solution = mathgenerator.surface_area_sphere()
+                problem, solution = mathgenerator.volume_cube(10)
 
                 # return string cleanup
                 problem = problem.replace("$", "")
                 problem = problem.replace("m ", " ")
                 # problem = problem.replace("m ", ", ")
                 solution = solution.replace("$", "")
-                solution = solution.replace(" m^2", "")
+                solution = solution.replace(" m^3", "")
 
-                questionType = "Surface Area of a Sphere"
+                questionType = "Volume of a Cube"
+            if (index == 10):
+                problem, solution = mathgenerator.volume_cylinder(20, 10)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m ", " ")
+                # problem = problem.replace("m ", ", ")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^3", "")
+
+                questionType = "Volume of a Cylinder"
+            if (index == 11):
+                problem, solution = mathgenerator.volume_pyramid(20, 20, 20)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m ", " ")
+                # problem = problem.replace("m ", ", ")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^3", "")
+
+                questionType = "Volume of a Pyramid"
+            if (index == 11):
+                problem, solution = mathgenerator.volume_sphere(20)
+
+                # return string cleanup
+                problem = problem.replace("$", "")
+                problem = problem.replace("m ", " ")
+                problem = problem.replace(" = ", "")
+                solution = solution.replace("$", "")
+                solution = solution.replace(" m^3", "")
+
+                questionType = "Volume of a Sphere"
 
     return jsonify({
         "problem": problem,
