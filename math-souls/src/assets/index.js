@@ -1,3 +1,4 @@
 import buttonBackground from "./buttonBackground.png";
+import knightPFP from "./knightPFP.png";
 
-export default buttonBackground;
+export { buttonBackground, knightPFP };

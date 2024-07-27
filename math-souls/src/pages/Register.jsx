@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { supabase } from "../supabase";
-import buttonBackground from "../assets/index";
+import { buttonBackground } from "../assets/index";
 import "./Login.css";
 
 const Register = () => {
@@ -43,6 +43,8 @@ const Register = () => {
         .from("Users")
         .insert([{ userID: data.user.id, username: username, email: email }])
         .select();
+
+      localStorage.setItem("userID", data.user.id);
 
       navigate("/");
     }

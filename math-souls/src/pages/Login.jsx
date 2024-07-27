@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { supabase } from "../supabase";
-import buttonBackground from "../assets/index";
+import { buttonBackground } from "../assets/index";
 import "./Login.css";
 
 const Login = () => {
@@ -16,14 +16,17 @@ const Login = () => {
   }, []);
 
   const getUser = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    console.log(user);
-
-    if (user.id != null) {
-      navigate("/");
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user == null) {
+        console.log("no user logged in");
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -37,6 +40,7 @@ const Login = () => {
       if (error) {
         alert("Incorrect Email or Password");
       }
+      localStorage.setItem("userID", data.user.id);
 
       navigate("/");
     } else {
