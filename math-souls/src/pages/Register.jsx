@@ -12,6 +12,22 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    console.log(user);
+
+    if (user.id != null) {
+      navigate("/");
+    }
+  };
+
   const handleSignUp = async () => {
     if (email.includes("@") == false) {
       alert("Invalid Email.");
