@@ -20,7 +20,7 @@ const Home = ({ setAuth }) => {
 
     // Selecting a random greeting
     setGreeting(greetingList[Math.floor(Math.random() * greetingList.length)]);
-    if((Math.random()*100) >= 95){
+    if (Math.random() * 100 >= 99) {
       setGreeting(secretGreeting);
     }
   }, []);
@@ -34,15 +34,11 @@ const Home = ({ setAuth }) => {
   function toList() {
     navigate("/list");
   }
-  function toSecret(){
-
-  }
+  function toSecret() {}
 
   return (
     <div className="homepage-container">
-      if(greeting == secretGreeting){
-
-      }
+      if(greeting == secretGreeting){}
       <p className="titl">{greeting}</p>
       <div className="buttons">
         <a onClick={toList} className="image-container">
