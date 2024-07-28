@@ -24,8 +24,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home setAuth={setAuth} />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/question" element={<QuestionPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/question/:category" element={<QuestionPage />} />
       </Routes>
     </BrowserRouter>
   );
