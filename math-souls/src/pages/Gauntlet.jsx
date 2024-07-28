@@ -80,6 +80,7 @@ const Gauntlet = ({ setUserUpdate }) => {
             setGameOver(true);
             setDefeatedMonster(true);
             updateSouls();
+            updateBossDefeated();
           } else {
             setBossHealth(bossHealth - 10);
             setQuestionComplete(true);
@@ -113,6 +114,7 @@ const Gauntlet = ({ setUserUpdate }) => {
             setGameOver(true);
             setDefeatedMonster(true);
             updateSouls();
+            updateBossDefeated();
           } else {
             setBossHealth(bossHealth - 10);
             setQuestionComplete(true);
@@ -163,6 +165,7 @@ const Gauntlet = ({ setUserUpdate }) => {
               setGameOver(true);
               setDefeatedMonster(true);
               updateSouls();
+              updateBossDefeated();
             } else {
               setBossHealth(bossHealth - 10);
               setQuestionComplete(true);
@@ -195,6 +198,7 @@ const Gauntlet = ({ setUserUpdate }) => {
               setGameOver(true);
               setDefeatedMonster(true);
               updateSouls();
+              updateBossDefeated();
             } else {
               setBossHealth(bossHealth - 10);
               setQuestionComplete(true);
@@ -260,6 +264,28 @@ const Gauntlet = ({ setUserUpdate }) => {
       .select();
 
     setUserUpdate(newSouls);
+  };
+
+  const updateBossDefeated = async () => {
+    if (category == "basic_math") {
+      const { data, error } = await supabase
+        .from("Users")
+        .update({ basicMathDefeated: true })
+        .eq("userID", localStorage.getItem("userID"))
+        .select();
+    } else if (category == "algebra") {
+      const { data, error } = await supabase
+        .from("Users")
+        .update({ algebraDefeated: true })
+        .eq("userID", localStorage.getItem("userID"))
+        .select();
+    } else if (category == "geometry") {
+      const { data, error } = await supabase
+        .from("Users")
+        .update({ geometryDefeated: true })
+        .eq("userID", localStorage.getItem("userID"))
+        .select();
+    }
   };
 
   useEffect(() => {
