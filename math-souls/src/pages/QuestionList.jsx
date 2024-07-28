@@ -24,18 +24,18 @@ const QuestionList = () => {
     navigate("/question");
   }
 
-  function backMenu(){
+  function backMenu() {
     navigate("/");
   }
 
   function sufficientSouls() {
-    if (souls >= 200) {
+    if (souls >= 50) {
       navigate("/question");
     }
   }
 
   function sufficientSouls2() {
-    if (souls >= 600) {
+    if (souls >= 100) {
       navigate("/question");
     }
   }
@@ -53,7 +53,7 @@ const QuestionList = () => {
             />
             <div className="overlay-text">Basic math</div>
           </a>
-          {(souls < 50) ? <div className="underlying-text">Souls needed: 50</div> : <div></div>}
+          <div className="underlying-text">Test yourself.</div>
         </div>
         <div>
           <a onClick={sufficientSouls} className="image-container">
@@ -72,7 +72,11 @@ const QuestionList = () => {
             )}
             <div className="overlay-text">Algebra</div>
           </a>
-          {(souls < 200) ? <div className="underlying-text">Souls needed: 200</div> : <div></div>}
+          {souls < 200 ? (
+            <div className="underlying-text">Souls needed: 200</div>
+          ) : (
+            <div></div>
+          )}
         </div>
         <div>
           <a onClick={sufficientSouls2} className="image-container">
@@ -91,12 +95,16 @@ const QuestionList = () => {
             )}
             <div className="overlay-text">Calculus</div>
           </a>
-          {(souls < 600) ? <div className="underlying-text">Souls needed: 600</div> : <div></div>}
+          {souls < 600 ? (
+            <div className="underlying-text">Souls needed: 600</div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
       <div className="backButton-text-container">
         <a onClick={backMenu}>
-            <div className="backButton-text">Return to menu</div>  
+          <div className="backButton-text">Return to menu</div>
         </a>
       </div>
     </div>

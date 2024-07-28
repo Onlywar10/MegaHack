@@ -55,7 +55,7 @@
     top: 50%;  /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Center text */
-    color: red;  /* Text color */
+    color: #780606; /* Text color */
   }
 
 .image-container {
@@ -71,7 +71,7 @@
 .backButton-text{
     display: flex;
     align-items: center;
-    color: red;
+    color: #780606;
     font-size: 20px;
     cursor: pointer;
 }
