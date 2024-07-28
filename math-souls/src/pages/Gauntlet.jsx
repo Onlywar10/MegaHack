@@ -126,7 +126,7 @@ const Gauntlet = ({ setUserUpdate }) => {
           if (playerHealthTracker.length == 0) {
             setGameOver(true);
             setPlayerLost(true);
-            playSound();
+            playDeathSound();
           }
 
           // Reset bools
@@ -208,7 +208,7 @@ const Gauntlet = ({ setUserUpdate }) => {
             if (playerHealthTracker.length == 0) {
               setGameOver(true);
               setPlayerLost(true);
-              playSound();
+              playDeathSound();
             }
 
             // Reset bools
