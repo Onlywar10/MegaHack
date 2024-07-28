@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Container } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import Question from '../components/Question';
 import QuestionInput from '../components/QuestionInput';
 import QuestionSubmit from '../components/QuestionSubmit';
@@ -11,7 +11,7 @@ import ButtonPressSound from '../assets/ButtonPress.mp3';
 import './QuestionPage.css'; // Import the CSS file
 import { supabase } from '../supabase.js';
 
-const QuestionPage = ({setUserUpdate}) => {
+const QuestionPage = ({ setUserUpdate }) => {
   const [userInput, setUserInput] = useState('');
   const [isCorrect, setIsCorrect] = useState(null); // State to track answer correctness
   const [correctAnswer, setCorrectAnswer] = useState(null); // State to store correct answer
@@ -22,7 +22,7 @@ const QuestionPage = ({setUserUpdate}) => {
 
   useEffect(() => {
     checkAlgebraDefeated();
-    if(!algebraDefeated){
+    if (!algebraDefeated) {
       console.log("NOT DEFEATED");
     }
     const fetchQuestion = async () => {
@@ -34,31 +34,41 @@ const QuestionPage = ({setUserUpdate}) => {
         setCorrectAnswer(parseInt(response.data.solution, 10));
         setQuestionId(response.data.id); // Assume the response includes a question ID
       } catch (err) {
+        setError('Failed to fetch question');
       }
     };
-    
+
     fetchQuestion();
     setTimeout(() => {
       setVisible(true);
     }, 1000);
   }, [category]);
-  
+
   const checkAlgebraDefeated = async () => {
+    try {
       const userID = localStorage.getItem("userID");
       const { data: userData, error: fetchError } = await supabase
         .from('Users')
         .select('algebraDefeated')
         .eq('userID', userID)
         .single();
+
+      if (fetchError) throw fetchError;
+
+      setAlgebraDefeated(userData.algebraDefeated);
+    } catch (error) {
+      console.error('Error fetching algebraDefeated status:', error);
+    }
   };
-  const handleSubmit = () => {
+
+  const handleSubmit = async () => {
     const noWhiteSpaceLowerCase = userInput.replace(/\s+/g, '').toLowerCase();
     console.log("Submitted Answer:", noWhiteSpaceLowerCase);
     const userInputValue = parseInt(noWhiteSpaceLowerCase, 10);
     if (userInputValue === correctAnswer) {
       console.log("Correct");
       setIsCorrect(true);
-      updateSouls();
+      await updateSouls();
     } else {
       console.log("Incorrect");
       setIsCorrect(false);
@@ -90,7 +100,6 @@ const QuestionPage = ({setUserUpdate}) => {
         .eq('userID', userID);
       setUserUpdate(newSoulsCount);
       if (updateError) throw updateError;
-      
     } catch (error) {
       console.error('Error updating souls:', error);
     }
@@ -116,7 +125,7 @@ const QuestionPage = ({setUserUpdate}) => {
           <QuestionSubmit handleSubmit={handleSubmit} disabled={submitDisabled} />
         </Box>
       </div>
-  
+
       {isCorrect === true && <CorrectAnswer />}
       {isCorrect === false && <IncorrectAnswer />}
       {(isCorrect === true || isCorrect === false) && (
@@ -128,7 +137,7 @@ const QuestionPage = ({setUserUpdate}) => {
             sx={{
               color: 'darkred',
               backgroundColor: 'gray',
-              border: '2px solid black' 
+              fontFamily: '"EB Garamond", serif'
             }}
           >
             Move to Menu
@@ -139,7 +148,7 @@ const QuestionPage = ({setUserUpdate}) => {
             sx={{
               color: 'darkred',
               backgroundColor: 'gray',
-              border: '10px blue'
+              fontFamily: '"EB Garamond", serif'
             }}
           >
             Continue Conquering

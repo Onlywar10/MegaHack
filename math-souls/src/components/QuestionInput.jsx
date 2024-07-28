@@ -24,7 +24,9 @@ const QuestionInput = ({ userInput, setUserInput }) => (
       },
       '& .MuiInputLabel-root.Mui-focused': {
         color: 'gray', // White label text when focused
+        
       },
+      fontFamily: '"EB Garamond", serif'
     }}
     fullWidth
     margin="normal"

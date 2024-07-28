@@ -33,7 +33,7 @@ const Question = ({ setCorrectAnswer }) => {
           {error}
         </Typography>
       ) : (
-        <Typography variant="h4" component="h1" className={styles.questionTitle}>
+        <Typography variant="h4" component="h1" className={styles.questionTitle}sx={{fontFamily: '"EB Garamond", serif'}}>
           {question} = ?
         </Typography>
       )}

@@ -1,5 +1,7 @@
 /* src/components/Question.module.css */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 .questionTitle {
+    font-family: "EB Garamond", serif;
     font-size: 2rem; /* Adjust the font size as needed */
     font-weight: bold;
     color:rgb(161, 161, 161); /* Set the text color to white */

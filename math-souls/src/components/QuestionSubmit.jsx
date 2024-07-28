@@ -1,7 +1,6 @@
 // src/components/QuestionSubmit.jsx
 import React from 'react';
 import { Button } from '@mui/material';
-import buttonBackground from '../assets/buttonBackground.png';
 
 const QuestionSubmit = ({ handleSubmit, disabled }) => {
   return (
@@ -11,7 +10,8 @@ const QuestionSubmit = ({ handleSubmit, disabled }) => {
       disabled={disabled}
       sx={{
         color: 'darkred',
-        backgroundColor: 'gray'
+        backgroundColor: 'gray',
+        fontFamily: '"EB Garamond", serif'
       }}
     >
       Submit
