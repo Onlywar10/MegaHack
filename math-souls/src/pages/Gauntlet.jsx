@@ -516,7 +516,7 @@ const Gauntlet = ({ setUserUpdate }) => {
           <button className="gauntlet-return" onClick={() => navigate("/")}>
             Return Home
           </button>
-          {!messageSent && defeatedMonster ? (
+          {!messageSent && defeatedMonster && (
             <div className="gauntlet-message-container">
               <div
                 style={{
@@ -536,7 +536,8 @@ const Gauntlet = ({ setUserUpdate }) => {
                 Leave Message
               </button>
             </div>
-          ) : (
+          )}
+          {messageSent && !playerLost && (
             <div
               style={{
                 color: "white",
