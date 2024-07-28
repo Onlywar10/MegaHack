@@ -7,7 +7,7 @@ import useSound from "use-sound";
 
 import { supabase } from "../supabase";
 import { deathSound } from "../assets";
-import "./endless.css";
+import "./Endless.css";
 
 const Endless = ({ setUserUpdate }) => {
   const quipList = [
@@ -152,9 +152,7 @@ const Endless = ({ setUserUpdate }) => {
         </>
       ) : (
         <div className="endless-end">
-          {playerLost && (
-            <div className="endless-fallen">YOU HAVE FALLEN.</div>
-          )}
+          {playerLost && <div className="endless-fallen">YOU HAVE FALLEN.</div>}
           <button className="endless-return" onClick={() => navigate("/")}>
             Return Home
           </button>

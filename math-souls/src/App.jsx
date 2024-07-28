@@ -7,7 +7,7 @@ import QuestionPage from "./pages/QuestionPage";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
-
+import Endless from "./pages/endless";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -30,11 +30,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/endless" element={<Endless />} />
-        <Route path="/question/:category" element={<QuestionPage  setUserUpdate={setUserUpdate}/>} />
+        <Route
+          path="/question/:category"
+          element={<QuestionPage setUserUpdate={setUserUpdate} />}
+        />
         <Route
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
+        <Route path="/endless" element={<Endless />} />
       </Routes>
     </BrowserRouter>
   );
