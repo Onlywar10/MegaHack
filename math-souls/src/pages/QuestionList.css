@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'EB'; /* The name you want to use to refer to the font */
+    font-family: 'EB Garamond'; /* The name you want to use to refer to the font */
     src: url('../assets/EBGaramond-VariableFont_wght.ttf') format('truetype');
     font-weight: normal; /* Normal weight */
     font-style: normal; /* Normal style */
@@ -12,7 +12,7 @@
 }
 
 .titl{
-    font-family: 'EB', sans-serif;
+    font-family: 'EB Garamond', sans-serif;
     color: white; 
     display: flex; 
     justify-content: center; 
@@ -33,6 +33,13 @@
     margin-right: 10px; /* Space between image and text */
 }
 
+.underlying-text {
+    margin-top: 10px;
+    text-align: center;
+    left: 50%;
+    color: white;
+}
+
 .overlay-text {
     font-family: 'Gloria', sans-serif;
     position: absolute;
@@ -43,16 +50,15 @@
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%); /* Center text */
     color: red;  /* Text color */
-  }
+}
+
+.buttons-transparent{
+    opacity: 0.5;
+    width: 242px;
+    height: 127px;
+}
 
 .image-container {
     position: relative;
     display: inline-block;
-}
-
-.underlying-text{
-    display: flex;
-    position: absolute;
-    text-align: center;
-    color: white;
 }
