@@ -33,6 +33,10 @@
     margin-right: 10px; /* Space between image and text */
 }
 
+.buttons:hover {
+    cursor: pointer;
+}
+
 .overlay-text {
     font-family: 'Gloria', sans-serif;
     position: absolute;

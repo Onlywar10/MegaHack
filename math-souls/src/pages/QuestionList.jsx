@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import devil from "../assets/Devil_Fruits_10.png";
+import { buttonBackground } from "../assets";
 
 const QuestionList = () => {
   var souls = 100;
@@ -42,7 +42,11 @@ const QuestionList = () => {
       <div className="buttons">
         <div>
           <a onClick={handleClick} className="image-container">
-            <img src={devil} alt="Local Image" style={{ border: "none" }} />
+            <img
+              src={buttonBackground}
+              alt="Local Image"
+              style={{ border: "none" }}
+            />
             <div className="overlay-text">Basic math</div>
             <div className="underlying-text"> </div>
           </a>
@@ -50,9 +54,17 @@ const QuestionList = () => {
         <div>
           <a onClick={sufficientSouls} className="image-container">
             {souls < 200 ? (
-              <img src={devil} alt="Local Image" style={{ opacity: 0.3 }} />
+              <img
+                src={buttonBackground}
+                alt="Local Image"
+                style={{ opacity: 0.3 }}
+              />
             ) : (
-              <img src={devil} alt="Local Image" style={{ opacity: 1 }} />
+              <img
+                src={buttonBackground}
+                alt="Local Image"
+                style={{ opacity: 1 }}
+              />
             )}
             <div className="overlay-text">Algebra</div>
           </a>
@@ -61,9 +73,17 @@ const QuestionList = () => {
         <div>
           <a onClick={sufficientSouls2} className="image-container">
             {souls < 600 ? (
-              <img src={devil} alt="Local Image" style={{ opacity: 0.3 }} />
+              <img
+                src={buttonBackground}
+                alt="Local Image"
+                style={{ opacity: 0.3 }}
+              />
             ) : (
-              <img src={devil} alt="Local Image" style={{ opacity: 1 }} />
+              <img
+                src={buttonBackground}
+                alt="Local Image"
+                style={{ opacity: 1 }}
+              />
             )}
             <div className="overlay-text">Algebra</div>
           </a>

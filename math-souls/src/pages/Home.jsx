@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import devil from "../assets/Devil_Fruits_10.png";
+import { buttonBackground } from "../assets";
 
-const Home = () => {
+const Home = ({ setAuth }) => {
+  useEffect(() => {
+    setAuth(true);
+  }, []);
+
   const navigate = useNavigate();
 
   function handleClick() {
@@ -15,14 +19,22 @@ const Home = () => {
 
   return (
     <body>
-      <p className="titl">Welcome player! What would you like to do?</p>
+      <p className="titl">Welcome Traveler. A new day dawns.</p>
       <div className="buttons">
         <a onClick={toList} class="image-container">
-          <img src={devil} alt="Local Image" style={{ border: "none" }} />
+          <img
+            src={buttonBackground}
+            alt="Local Image"
+            style={{ border: "none" }}
+          />
           <div class="overlay-text">Tackle an enemy</div>
         </a>
         <a onClick={handleClick} class="image-container">
-          <img src={devil} alt="Local Image" style={{ border: "none" }} />
+          <img
+            src={buttonBackground}
+            alt="Local Image"
+            style={{ border: "none" }}
+          />
           <div class="overlay-text">Tackle the boss</div>
         </a>
       </div>
