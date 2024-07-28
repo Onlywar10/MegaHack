@@ -40,7 +40,7 @@ const QuestionList = () => {
     <div className="homepage-container">
       <p className="titl">Choose your destiny</p>
       <div className="buttons">
-        <div>
+        <div className="button-underlyingtext-container">
           <a onClick={handleClick} className="image-container">
             <img
               src={buttonBackground}
@@ -48,8 +48,8 @@ const QuestionList = () => {
               style={{ border: "none" }}
             />
             <div className="overlay-text">Basic math</div>
-            <div className="underlying-text"> </div>
           </a>
+          <div className="underlying-text">Souls needed: 50</div>
         </div>
         <div>
           <a onClick={sufficientSouls} className="image-container">
