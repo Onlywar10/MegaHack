@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Container, Typography } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Question from '../components/Question';
 import QuestionInput from '../components/QuestionInput';
 import QuestionSubmit from '../components/QuestionSubmit';
 import CorrectAnswer from '../components/CorrectAnswer';
 import IncorrectAnswer from '../components/IncorrectAnswer';
 import ButtonPressSound from '../assets/ButtonPress.mp3';
-import './QuestionPage.css'; // Import the CSS file
+import './QuestionPage.css';
 import { supabase } from '../supabase.js';
 
 const QuestionPage = ({ setUserUpdate }) => {
   const [userInput, setUserInput] = useState('');
-  const [isCorrect, setIsCorrect] = useState(null); // State to track answer correctness
-  const [correctAnswer, setCorrectAnswer] = useState(null); // State to store correct answer
-  const [submitDisabled, setSubmitDisabled] = useState(false); // State to track submit button disabled state
-  const [visible, setVisible] = useState(false); // State to handle visibility
+  const [isCorrect, setIsCorrect] = useState(null);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [submitDisabled, setSubmitDisabled] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [algebraDefeated, setAlgebraDefeated] = useState(false);
+  const [questionType, setQuestionType] = useState(null);
+  const [question, setQuestion] = useState(''); // Added state for question
   const { category } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkAlgebraDefeated();
@@ -27,14 +29,20 @@ const QuestionPage = ({ setUserUpdate }) => {
     }
     const fetchQuestion = async () => {
       try {
+            setQuestion('What is 2 + 2?');
+    setCorrectAnswer(4);
+    setQuestionType('Basic Math');
         const response = await axios.get('http://localhost:5000/question/', {
-        params: { category: category || 'basic_math' },
+          params: { category: category || 'basic_math' },
         });
+        console.log(response.data.problem);
         setQuestion(response.data.problem);
         setCorrectAnswer(parseInt(response.data.solution, 10));
-        setQuestionId(response.data.id); // Assume the response includes a question ID
-      } catch (err) {
-        setError('Failed to fetch question');
+        setQuestionType(response.data.type);
+        console.log('Fetched Question:', question); // Log the fetched question
+        console.log('Fetched Correct Answer:', response.data.solution);
+      } catch (error) {
+        console.error('Error fetching question:', error);
       }
     };
     fetchQuestion();
@@ -62,8 +70,10 @@ const QuestionPage = ({ setUserUpdate }) => {
 
   const handleSubmit = async () => {
     const noWhiteSpaceLowerCase = userInput.replace(/\s+/g, '').toLowerCase();
-    console.log("Submitted Answer:", noWhiteSpaceLowerCase);
     const userInputValue = parseInt(noWhiteSpaceLowerCase, 10);
+    console.log("Submitted Answer:", userInputValue);
+    console.log("Correct Answer:", correctAnswer);
+
     if (userInputValue === correctAnswer) {
       console.log("Correct");
       setIsCorrect(true);
@@ -72,6 +82,7 @@ const QuestionPage = ({ setUserUpdate }) => {
       console.log("Incorrect");
       setIsCorrect(false);
     }
+    
     const audio = new Audio(ButtonPressSound);
     audio.play().catch(error => {
       console.error('Error playing sound:', error);
@@ -105,20 +116,22 @@ const QuestionPage = ({ setUserUpdate }) => {
   };
 
   const handleMoveToMenu = () => {
-    console.log("Move to Menu clicked");
-    setSubmitDisabled(false); // Re-enable submit button
+    setSubmitDisabled(false);
+    navigate('/');
   };
 
   const handleContinueConquering = () => {
-    console.log("Continue Conquering clicked");
-    setSubmitDisabled(false); // Re-enable submit button
+    setSubmitDisabled(false);
     window.location.reload();
   };
 
   return (
     <Container maxWidth="sm" className="full-height-center">
       <div className={`fade-in ${visible ? 'visible' : ''}`}>
-        <Question setCorrectAnswer={setCorrectAnswer} />
+        {/* Display the question */}
+        <Typography variant="h6" align="center" gutterBottom color={'gray'} sx={{fontFamily: '"EB Garamond", serif', fontSize: "48px"}}>
+          {question}
+        </Typography>
         <QuestionInput userInput={userInput} setUserInput={setUserInput} />
         <Box display="flex" justifyContent="center" mt={2}>
           <QuestionSubmit handleSubmit={handleSubmit} disabled={submitDisabled} />
@@ -154,6 +167,21 @@ const QuestionPage = ({ setUserUpdate }) => {
           </Button>
         </Box>
       )}
+      
+      <div 
+        className={`fade-in ${visible ? 'visible' : ''}`}
+        style={{
+          fontSize: "16px",
+          color: "gray",
+          marginTop: "20px"
+        }}
+      >
+        {questionType === "Combining Like Terms" && "Example answer: 10x+16x^2 (lower order terms first!)"}
+        {questionType === "Expanding Polynomials" && "Example answer: 36x^2-12x (higher order terms first!)"}
+        {questionType === "Linear Equations" && "Example answer: x,y or -5,-1"}
+        {questionType === "System of Equations" && "Example answer: x,y or -5,-1"}
+        {category === "geometry" && "Round TWO decimal places. Example: 12.43"}
+      </div>
     </Container>
   );
 };
