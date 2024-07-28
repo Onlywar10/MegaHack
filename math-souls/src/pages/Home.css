@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'EB'; /* The name you want to use to refer to the font */
+    src: url('../assets/EBGaramond-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal; /* Normal weight */
+    font-style: normal; /* Normal style */
+  }
+@font-face{
+    font-family: 'Gloria';
+    src: url('../assets/GloriaHallelujah-Regular.ttf') format('truetype');
+    font-weight: normal; /* Normal weight */
+    font-style: normal; /* Normal style */
+}
+
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titl{
+    font-family: 'EB', sans-serif;
+    color: white; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 40pt;
+    height: 40vh;
+
+}
+
+.buttons{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly; 
+    align-items: center;
+    color: gray;
+    text-align: center;
+
+    width: 50%;
+}
+
+.buttons img {
+    width: 242px; /* Set image width */
+    height: 127px; /* Set image height */
+    margin-right: 10px; /* Space between image and text */
+}
+
+.overlay-text {
+    font-family: 'EB Garamond', serif;
+    position: absolute;
+    font-size: 30px;
+    line-height: 1.3;
+    text-align: center;
+    top: 50%;  /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center text */
+    color: #780606; /* Text color */
+  }
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.backButton-text{
+    display: flex;
+    align-items: center;
+    color: #780606;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.backButton-text-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 12vi; 
+}

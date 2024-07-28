@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import QuestionPage from "./pages/QuestionPage";
+import QuestionList from "./pages/QuestionList";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
 import Endless from "./pages/endless";
+import SecretBenson from "./pages/SecretBenson";
+import BossList from "./pages/BossList";
+
 function App() {
   const [auth, setAuth] = useState(false);
   // This state is here for the purpose of updating the navbar
@@ -27,15 +31,24 @@ function App() {
       <Routes>
         <Route path="/" element={<Home setAuth={setAuth} />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/question" element={<QuestionPage />} />
+        <Route path="/list" element={<QuestionList />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/question/:category" element={<QuestionPage  setUserUpdate={setUserUpdate}/>} />
+        <Route
+          path="/question/:category"
+          element={<QuestionPage setUserUpdate={setUserUpdate} />}
+        />
         <Route
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
-        <Route path="/endless" element={<Endless />} />
-      </Routes>    
-      </BrowserRouter>
+        <Route path="/benson" element={<SecretBenson />} />
+        <Route
+          path="bossList"
+          element={<BossList setUserUpdate={setUserUpdate} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
