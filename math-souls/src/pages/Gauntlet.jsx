@@ -318,7 +318,8 @@ const Gauntlet = ({ setUserUpdate }) => {
       let { data: Messages, error } = await supabase
         .from("Messages")
         .select("*")
-        .eq("gauntlet_category", category);
+        .eq("gauntlet_category", category)
+        .eq("mode", "standard");
 
       if (Messages.length == 0) {
         setMessageLoaded(false);
@@ -346,6 +347,7 @@ const Gauntlet = ({ setUserUpdate }) => {
           username: Users[0].username,
           gauntlet_category: category,
           message: newMessage,
+          mode: "standard",
         },
       ])
       .select();
