@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<Home setAuth={setAuth} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/question/:category" element={<QuestionPage />} />
+        <Route path="/question/:category" element={<QuestionPage  setUserUpdate={setUserUpdate}/>} />
         <Route
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}

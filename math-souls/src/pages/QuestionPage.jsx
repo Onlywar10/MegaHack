@@ -11,7 +11,7 @@ import ButtonPressSound from '../assets/ButtonPress.mp3';
 import './QuestionPage.css'; // Import the CSS file
 import { supabase } from '../supabase.js';
 
-const QuestionPage = () => {
+const QuestionPage = ({setUserUpdate}) => {
   const [userInput, setUserInput] = useState('');
   const [isCorrect, setIsCorrect] = useState(null); // State to track answer correctness
   const [correctAnswer, setCorrectAnswer] = useState(null); // State to store correct answer
@@ -88,8 +88,9 @@ const QuestionPage = () => {
         .from('Users')
         .update({ souls: newSoulsCount })
         .eq('userID', userID);
-
+      setUserUpdate(newSoulsCount);
       if (updateError) throw updateError;
+      
     } catch (error) {
       console.error('Error updating souls:', error);
     }
