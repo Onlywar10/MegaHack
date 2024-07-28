@@ -51,14 +51,14 @@ const QuestionPage = () => {
         .eq('userID', userID)
         .single();
   };
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const noWhiteSpaceLowerCase = userInput.replace(/\s+/g, '').toLowerCase();
     console.log("Submitted Answer:", noWhiteSpaceLowerCase);
     const userInputValue = parseInt(noWhiteSpaceLowerCase, 10);
     if (userInputValue === correctAnswer) {
       console.log("Correct");
       setIsCorrect(true);
-      await updateSouls();
+      updateSouls();
     } else {
       console.log("Incorrect");
       setIsCorrect(false);
