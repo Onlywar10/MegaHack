@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
 import SecretBenson from "./pages/SecretBenson";
+import BossList from "./pages/BossList";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -41,6 +42,10 @@ function App() {
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
         <Route path="/benson" element={<SecretBenson />} />
+        <Route
+          path="bossList"
+          element={<BossList setUserUpdate={setUserUpdate} />}
+        />
       </Routes>
     </BrowserRouter>
   );
