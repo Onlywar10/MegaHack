@@ -17,19 +17,31 @@ const BossList = ({ setUserUpdate }) => {
 
   const [userSouls, setUserSouls] = useState(0);
   const [error, setError] = useState(false);
+  const [accomplishments, setAccomplishments] = useState({});
 
   // for fun
   const [warning, setWarning] = useState("");
 
   let navigate = useNavigate();
 
-  const fetchUserSoulCount = async () => {
+  const fetchUserData = async () => {
     let { data: Users, error } = await supabase
       .from("Users")
       .select("*")
       .eq("userID", localStorage.getItem("userID"));
-
     setUserSouls(Users[0].souls);
+
+    setAccomplishments({
+      basicDefeated: Users[0].basicMathDefeated,
+      algebraDefeated: Users[0].algebraDefeated,
+      geoDefeated: Users[0].geometryDefeated,
+    });
+
+    console.log({
+      basicDefeated: Users[0].basicMathDefeated,
+      algebraDefeated: Users[0].algebraDefeated,
+      geoDefeated: Users[0].geometryDefeated,
+    });
   };
 
   const updateSoulsCount = async (souls) => {
@@ -77,7 +89,7 @@ const BossList = ({ setUserUpdate }) => {
   };
 
   useEffect(() => {
-    fetchUserSoulCount();
+    fetchUserData();
 
     // select a random warning
     setWarning(warningList[Math.floor(Math.random() * warningList.length)]);
@@ -106,49 +118,61 @@ const BossList = ({ setUserUpdate }) => {
             <div className="login-button-text">Enter</div>
           </button>
         </div>
-        <div className="bossButton-title-container">
-          <div className="bossButton-title">Lord Algebra, The Unknown</div>
-          <div
-            style={{
-              color: "gray",
-            }}
-          >
-            Souls Required: 40
+        {accomplishments.basicDefeated ? (
+          <div className="bossButton-title-container">
+            <div className="bossButton-title">Lord Algebra, The Unknown</div>
+            <div
+              style={{
+                color: "gray",
+              }}
+            >
+              Souls Required: 40
+            </div>
+            <button className="login-button" onClick={checkAlgebra}>
+              <img
+                src={buttonBackground}
+                alt="button"
+                className="login-button-image"
+              />
+              <div className="login-button-text">Enter</div>
+            </button>
           </div>
-          <button className="login-button" onClick={checkAlgebra}>
-            <img
-              src={buttonBackground}
-              alt="button"
-              className="login-button-image"
-            />
-            <div className="login-button-text">Enter</div>
-          </button>
-        </div>
-        <div className="bossButton-title-container">
-          <div
-            className="bossButton-title"
-            style={{
-              fontSize: "24px",
-            }}
-          >
-            Lucious Cube, The Man With the Six Faces
+        ) : (
+          <div className="unlock-text">
+            Defeat The Fundamental Fury to unlock.
           </div>
-          <div
-            style={{
-              color: "gray",
-            }}
-          >
-            Souls Required: 60
+        )}
+        {accomplishments.basicDefeated && accomplishments.algebraDefeated ? (
+          <div className="bossButton-title-container">
+            <div
+              className="bossButton-title"
+              style={{
+                fontSize: "24px",
+              }}
+            >
+              Lucious Cube, The Man With the Six Faces
+            </div>
+            <div
+              style={{
+                color: "gray",
+              }}
+            >
+              Souls Required: 60
+            </div>
+            <button className="login-button" onClick={checkGeo}>
+              <img
+                src={buttonBackground}
+                alt="button"
+                className="login-button-image"
+              />
+              <div className="login-button-text">Enter</div>
+            </button>
           </div>
-          <button className="login-button" onClick={checkGeo}>
-            <img
-              src={buttonBackground}
-              alt="button"
-              className="login-button-image"
-            />
-            <div className="login-button-text">Enter</div>
-          </button>
-        </div>
+        ) : (
+          <div className="unlock-text">
+            Defeat Lord Algebra, The Unknown to unlock.
+          </div>
+        )}
       </div>
       {error && (
         <div
