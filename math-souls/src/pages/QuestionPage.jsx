@@ -1,11 +1,24 @@
-import React, { useState } from "react";
-import { Box, Container } from "@mui/material";
-import Question from "../components/Question";
-import QuestionInput from "../components/QuestionInput";
-import QuestionSubmit from "../components/QuestionSubmit";
+import React, { useState, useEffect } from 'react';
+import { Box, Button, Container } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import axios from 'axios'; // Import axios
+import Question from '../components/Question';
+import QuestionInput from '../components/QuestionInput';
+import QuestionSubmit from '../components/QuestionSubmit';
+import CorrectAnswer from '../components/CorrectAnswer';
+import IncorrectAnswer from '../components/IncorrectAnswer';
+import ButtonPressSound from '../assets/ButtonPress.mp3';
+import './QuestionPage.css'; // Import the CSS file
+import { supabase } from '../supabase.js';
 
-const QuestionPage = () => {
-  const [userInput, setUserInput] = useState("");
+const QuestionPage = ({setUserUpdate}) => {
+  const [userInput, setUserInput] = useState('');
+  const [isCorrect, setIsCorrect] = useState(null); // State to track answer correctness
+  const [correctAnswer, setCorrectAnswer] = useState(null); // State to store correct answer
+  const [submitDisabled, setSubmitDisabled] = useState(false); // State to track submit button disabled state
+  const [visible, setVisible] = useState(false); // State to handle visibility
+  const [algebraDefeated, setAlgebraDefeated] = useState(false);
+  const { category } = useParams();
 
   useEffect(() => {
     checkAlgebraDefeated();
