@@ -7,20 +7,23 @@ const QuestionInput = ({ userInput, setUserInput }) => (
     sx={{
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
-          borderColor: 'white', // White outline
+          borderColor: 'Red',
         },
         '&:hover fieldset': {
-          borderColor: 'white', // White outline on hover
+          borderColor: 'Darkred', 
         },
         '&.Mui-focused fieldset': {
-          borderColor: 'white', // White outline when focused
+          borderColor: 'Red', 
         },
       },
       '& .MuiInputBase-input': {
-        color: 'white', // White text
+        color: 'gray', // White text
       },
       '& .MuiInputLabel-root': {
-        color: 'white', // White label text
+        color: 'gray', // White label text
+      },
+      '& .MuiInputLabel-root.Mui-focused': {
+        color: 'gray', // White label text when focused
       },
     }}
     fullWidth
