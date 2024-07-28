@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
 
+
 function App() {
   const [auth, setAuth] = useState(false);
   // This state is here for the purpose of updating the navbar
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home setAuth={setAuth} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/endless" element={<Endless />} />
         <Route path="/question/:category" element={<QuestionPage  setUserUpdate={setUserUpdate}/>} />
         <Route
           path="/gauntlet/:category"
