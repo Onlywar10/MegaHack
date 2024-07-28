@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import QuestionPage from "./pages/QuestionPage";
+import QuestionList from "./pages/QuestionList";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
+import BossList from "./pages/BossList";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -27,6 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home setAuth={setAuth} />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/question" element={<QuestionPage />} />
+        <Route path="/list" element={<QuestionList />} />
         <Route path="/register" element={<Register />} />
         <Route
           path="/question/:category"
@@ -36,6 +40,7 @@ function App() {
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
+        <Route path="bossList" element={<BossList />} />
       </Routes>
     </BrowserRouter>
   );
