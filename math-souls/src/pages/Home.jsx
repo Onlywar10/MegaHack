@@ -1,45 +1,40 @@
 import React from "react";
+import './Home.css';
+import { useNavigate } from 'react-router-dom';
+import devil from '../assets/Devil_Fruits_10.png';
 
 const Home = () => {
+  const navigate = useNavigate();
   
   function handleClick() {
-    alert('You clicked me!');
+    navigate('/question');
   }
 
-  
-
   return (
-    <button onClick={handleClick}>button</button>
+    <body>
+      <p className="titl">
+        Welcome player! What would you like to do?
+      </p>
+      <div className="buttons">
+        <a onClick={handleClick} class="image-container">
+          <img src={devil} alt="Local Image" style={{border: 'none'}}/>
+          <div class="overlay-text">Tackle an enemy</div>
+        </a>
+        <a onClick={handleClick} class="image-container">
+          <img src={devil} alt="Local Image" style={{border: 'none'}}/>
+          <div class="overlay-text">Tackle the boss</div>
+        </a>
+      </div>
+    </body>
   );
 };
 
-// function TextBoxButtonExample() {
-//   // State to store the input value
-//   const [inputValue, setInputValue] = useState('');
-
-//   // Handler for input change
-//   const handleInputChange = (event) => {
-//     setInputValue(event.target.value);
-//   };
-
-//   // Handler for button click
-//   const handleButtonClick = () => {
-//     alert(`Button clicked! Input value: ${inputValue}`);
-//   };
-
-//   return (
-//     <div>
-//       <input 
-//         type="text" 
-//         value={inputValue} 
-//         onChange={handleInputChange} 
-//         placeholder="Enter text here"
-//       />
-//       <button onClick={handleButtonClick}>
-//         Click Me
-//       </button>
-//     </div>
-//   );
-// }
+const button2 = () => {
+  return(
+    <div>
+      <button>button2</button>
+    </div>
+  )
+}
 
 export default Home;
