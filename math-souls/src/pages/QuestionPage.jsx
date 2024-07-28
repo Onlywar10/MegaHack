@@ -157,6 +157,6 @@ const QuestionPage = ({ setUserUpdate }) => {
       )}
     </Container>
   );
-}
+};
 
 export default QuestionPage;

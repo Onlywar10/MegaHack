@@ -20,10 +20,10 @@ const Gauntlet = ({ setUserUpdate }) => {
     "Never surrender.",
     "Self doubt is the greatest enemy.",
     "Don't underestimate yourself.",
+    "Perseverance is key.",
   ];
 
   // player health states
-  const [playerHealth, setPlayerHealth] = useState(3);
   const [playerHealthTracker, setPlayerHealthTracker] = useState([]);
 
   // boss health states
@@ -40,6 +40,14 @@ const Gauntlet = ({ setUserUpdate }) => {
 
   // quips for fun
   const [quip, setQuip] = useState("");
+
+  // messaging states
+  const [messageLoaded, setMessageLoaded] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageDirection, setMessageDirection] = useState(0);
+  const [messageAuthor, setMessageAuthor] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+  const [messageSent, setMessageSent] = useState(false);
 
   // Hooks
   let { category } = useParams();
@@ -80,6 +88,7 @@ const Gauntlet = ({ setUserUpdate }) => {
             setGameOver(true);
             setDefeatedMonster(true);
             updateSouls();
+            updateBossDefeated();
           } else {
             setBossHealth(bossHealth - 10);
             setQuestionComplete(true);
@@ -113,6 +122,7 @@ const Gauntlet = ({ setUserUpdate }) => {
             setGameOver(true);
             setDefeatedMonster(true);
             updateSouls();
+            updateBossDefeated();
           } else {
             setBossHealth(bossHealth - 10);
             setQuestionComplete(true);
@@ -163,6 +173,7 @@ const Gauntlet = ({ setUserUpdate }) => {
               setGameOver(true);
               setDefeatedMonster(true);
               updateSouls();
+              updateBossDefeated();
             } else {
               setBossHealth(bossHealth - 10);
               setQuestionComplete(true);
@@ -195,6 +206,7 @@ const Gauntlet = ({ setUserUpdate }) => {
               setGameOver(true);
               setDefeatedMonster(true);
               updateSouls();
+              updateBossDefeated();
             } else {
               setBossHealth(bossHealth - 10);
               setQuestionComplete(true);
@@ -221,11 +233,19 @@ const Gauntlet = ({ setUserUpdate }) => {
   };
 
   const nextQuestion = () => {
+    // reset the question
     setUserAnswer("");
     fetchGauntletQuestion();
     setQuestionComplete(false);
     setQuestionCorrect(false);
+
+    // reset message
+    setMessageLoaded(false);
+
     updateQuip();
+
+    // get next message
+    fetchRandomMessage();
   };
 
   const updateQuip = () => {
@@ -262,12 +282,84 @@ const Gauntlet = ({ setUserUpdate }) => {
     setUserUpdate(newSouls);
   };
 
+  const updateBossDefeated = async () => {
+    if (category == "basic_math") {
+      const { data, error } = await supabase
+        .from("Users")
+        .update({ basicMathDefeated: true })
+        .eq("userID", localStorage.getItem("userID"))
+        .select();
+    } else if (category == "algebra") {
+      const { data, error } = await supabase
+        .from("Users")
+        .update({ algebraDefeated: true })
+        .eq("userID", localStorage.getItem("userID"))
+        .select();
+    } else if (category == "geometry") {
+      const { data, error } = await supabase
+        .from("Users")
+        .update({ geometryDefeated: true })
+        .eq("userID", localStorage.getItem("userID"))
+        .select();
+    }
+  };
+
+  const fetchRandomMessage = async () => {
+    let num = Math.floor(Math.random() * 10);
+    if (num == 1 || num == 2 || num == 3) {
+      // Load a message for this question
+      setMessageLoaded(true);
+
+      // randomly select a direction
+      let direction = Math.floor(Math.random() * 2);
+      setMessageDirection(direction);
+      // console.log(direction);
+
+      let { data: Messages, error } = await supabase
+        .from("Messages")
+        .select("*")
+        .eq("gauntlet_category", category);
+
+      // Randomly select message for this boss
+      let messageIndex = Math.floor(Math.random() * Messages.length);
+      // console.log(Messages[messageIndex].message);
+      setMessage(Messages[messageIndex].message);
+      setMessageAuthor(Messages[messageIndex].username);
+    }
+  };
+
+  const submitMessage = async () => {
+    let { data: Users, error: userError } = await supabase
+      .from("Users")
+      .select("*")
+      .eq("userID", localStorage.getItem("userID"));
+
+    const { data, error } = await supabase
+      .from("Messages")
+      .insert([
+        {
+          userID: localStorage.getItem("userId"),
+          username: Users[0].username,
+          gauntlet_category: category,
+          message: newMessage,
+        },
+      ])
+      .select();
+
+    setNewMessage("");
+    setMessageSent(true);
+  };
+
   useEffect(() => {
     fetchGauntletQuestion();
 
+    fetchRandomMessage();
+    let direction = Math.floor(Math.random() * 2);
+    setMessageDirection(direction);
+
     // setting player health
     var hearts = [];
-    for (let i = 0; i < playerHealth; i++) {
+    for (let i = 0; i < 3; i++) {
       hearts.push(i);
     }
     setPlayerHealthTracker(hearts);
@@ -393,6 +485,18 @@ const Gauntlet = ({ setUserUpdate }) => {
               );
             })}
           </div>
+          {messageLoaded && messageDirection == 0 && (
+            <div className="gauntlet-past-message-left">
+              <div>{message}</div>
+              <div>-{messageAuthor}</div>
+            </div>
+          )}
+          {messageLoaded && messageDirection == 1 && (
+            <div className="gauntlet-past-message-right">
+              <div>{message}</div>
+              <div>-{messageAuthor}</div>
+            </div>
+          )}
         </>
       ) : (
         <div className="gauntlet-end">
@@ -412,6 +516,37 @@ const Gauntlet = ({ setUserUpdate }) => {
           <button className="gauntlet-return" onClick={() => navigate("/")}>
             Return Home
           </button>
+          {!messageSent && defeatedMonster && (
+            <div className="gauntlet-message-container">
+              <div
+                style={{
+                  color: "white",
+                }}
+              >
+                Leave a message for future travelers.
+              </div>
+              <textarea
+                type="text"
+                placeholder="message"
+                className="gauntlet-message-input"
+                value={newMessage}
+                onChange={(event) => setNewMessage(event.target.value)}
+              />
+              <button className="leave-message" onClick={submitMessage}>
+                Leave Message
+              </button>
+            </div>
+          )}
+          {messageSent && !playerLost && (
+            <div
+              style={{
+                color: "white",
+                marginTop: "40px",
+              }}
+            >
+              Message sent!
+            </div>
+          )}
         </div>
       )}
     </div>
