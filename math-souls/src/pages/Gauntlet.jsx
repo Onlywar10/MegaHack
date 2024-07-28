@@ -320,6 +320,10 @@ const Gauntlet = ({ setUserUpdate }) => {
         .select("*")
         .eq("gauntlet_category", category);
 
+      if (Messages.length == 0) {
+        setMessageLoaded(false);
+      }
+
       // Randomly select message for this boss
       let messageIndex = Math.floor(Math.random() * Messages.length);
       // console.log(Messages[messageIndex].message);
