@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Box, Container } from '@mui/material';
-import Question from '../components/Question';
-import QuestionInput from '../components/QuestionInput';
-import QuestionSubmit from '../components/QuestionSubmit';
+import React, { useState } from "react";
+import { Box, Container } from "@mui/material";
+import Question from "../components/Question";
+import QuestionInput from "../components/QuestionInput";
+import QuestionSubmit from "../components/QuestionSubmit";
 
 const QuestionPage = () => {
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState("");
 
   const handleSubmit = () => {
     console.log("Submitted Answer:", userInput);
@@ -20,6 +20,6 @@ const QuestionPage = () => {
       </Box>
     </Container>
   );
-}
+};
 
 export default QuestionPage;
