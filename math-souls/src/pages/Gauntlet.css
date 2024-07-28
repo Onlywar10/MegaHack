@@ -130,6 +130,78 @@
     cursor: pointer;
 }
 
+.gauntlet-past-message-left {
+    position: absolute;
+    text-align: left;
+    color: white;
+    background-color: rgb(47, 16, 16);
+    border-top: white 1px solid;
+    border-bottom: white 1px solid;
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 80px; 
+    top: 300px;
+
+    animation-name: signOutFadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; 
+}
+
+.gauntlet-past-message-right {
+    position: absolute;
+    text-align: left;
+    color: white;
+    background-color: rgb(47, 16, 16);
+    border-top: white 1px solid;
+    border-bottom: white 1px solid;
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    right: 200px; 
+    top: 150px;
+
+    animation-name: signOutFadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; 
+}
+
+.gauntlet-message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 10px;
+
+    opacity: 0;
+    animation-name: signOutFadeIn;
+    animation-delay: 3s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards; 
+}
+
+.gauntlet-message-input {
+    resize: none;
+    font-family: "EB Garamond", serif;
+    font-family: 20px;
+    width: 400px;
+    padding: 5px;
+    height: 100px;
+}
+
+.leave-message {
+    width: 130px;
+    height: 40px;
+    font-family: "EB Garamond", serif;
+    font-size: 20px;
+    background-color: gray;
+}
+
 @keyframes signOutFadeIn {
     0% {
         opacity: 0;
