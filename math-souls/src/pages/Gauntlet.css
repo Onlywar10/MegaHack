@@ -1,0 +1,93 @@
+.gauntlet-page-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    height: 500px;
+
+    /* border: solid 1px white; */
+}
+
+.gauntlet-player-health {
+    position: absolute;
+    color: white;
+    top: 0;
+    left: 50px;
+    font-size: 30px;
+    color: red;
+    
+    display: flex;
+    flex-direction: row;
+    width: 8%;
+    justify-content: start;
+}
+
+.gaunlet-question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.gauntlet-question {
+    color: white;
+    font-size: 100px;
+}
+
+.gauntlet-question-type {
+    color: white;
+    font-size: 28px;
+}
+
+.gauntlet-question-input {
+    height: 40px;
+    width: 300px;
+    padding: 20px;
+    margin-top: 30px;
+
+    font-family: "EB Garamond", serif;
+    font-size: 35px;
+    text-align: center;
+    background-color: gray;
+}
+
+.gauntlet-solution {
+    color: white;
+    margin-top: 10px;
+}
+
+.gauntlet-submit {
+    width: 200px;
+    height: 60px;
+    margin-top: 20px;
+    font-family: "EB Garamond", serif;
+    font-size: 20px;
+    background-color: gray;
+}
+
+.gauntlet-submit:hover {
+    cursor: pointer;
+}
+
+.gauntlet-boss-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 50%;
+}
+
+.gauntlet-boss-health {
+    width: 100%;
+}
+
+.gauntlet-boss-health::-webkit-progress-bar{
+    background-color: red;
+}
+
+.gauntlet-boss-name {
+    color: white;
+    margin-bottom: 10px;
+}
