@@ -40,7 +40,10 @@ function App() {
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
-        <Route path="bossList" element={<BossList />} />
+        <Route
+          path="bossList"
+          element={<BossList setUserUpdate={setUserUpdate} />}
+        />
       </Routes>
     </BrowserRouter>
   );

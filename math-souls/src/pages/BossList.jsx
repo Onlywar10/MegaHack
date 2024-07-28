@@ -5,7 +5,7 @@ import { supabase } from "../supabase";
 import "./bossList.css";
 import { buttonBackground } from "../assets";
 
-const BossList = () => {
+const BossList = ({ setUserUpdate }) => {
   const warningList = [
     "Be cautious Traveler, many have fallen here.",
     "Tread carefully. Watch your step.",
@@ -32,8 +32,26 @@ const BossList = () => {
     setUserSouls(Users[0].souls);
   };
 
+  const updateSoulsCount = async (souls) => {
+    var newSouls = userSouls;
+
+    // Adding correct soul amount
+    newSouls = newSouls - souls;
+
+    // console.log(newSouls);
+
+    const { data, error: soulsError } = await supabase
+      .from("Users")
+      .update({ souls: newSouls.toString() })
+      .eq("userID", localStorage.getItem("userID"))
+      .select();
+
+    setUserUpdate(newSouls);
+  };
+
   const checkBasic = () => {
     if (Number(userSouls) >= 20) {
+      updateSoulsCount(20);
       navigate("/gauntlet/basic_math");
     } else {
       setError(true);
@@ -42,6 +60,7 @@ const BossList = () => {
 
   const checkAlgebra = () => {
     if (Number(userSouls) >= 40) {
+      updateSoulsCount(40);
       navigate("/gauntlet/algebra");
     } else {
       setError(true);
@@ -50,6 +69,7 @@ const BossList = () => {
 
   const checkGeo = () => {
     if (Number(userSouls) >= 60) {
+      updateSoulsCount(60);
       navigate("/gauntlet/geometry");
     } else {
       setError(true);
