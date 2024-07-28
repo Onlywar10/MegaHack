@@ -202,6 +202,10 @@
     background-color: gray;
 }
 
+.leave-message:hover {
+    cursor: pointer;
+}
+
 @keyframes signOutFadeIn {
     0% {
         opacity: 0;
