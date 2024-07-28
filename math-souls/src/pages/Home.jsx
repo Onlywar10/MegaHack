@@ -43,7 +43,7 @@ const Home = ({ setAuth }) => {
           />
           <div className="overlay-text">Tackle an enemy</div>
         </a>
-        <a onClick={handleClick} className="image-container">
+        <a onClick={() => navigate("/bossList")} className="image-container">
           <img
             src={buttonBackground}
             alt="Local Image"
