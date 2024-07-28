@@ -24,6 +24,10 @@ const QuestionList = () => {
     navigate("/question");
   }
 
+  function backMenu(){
+    navigate("/");
+  }
+
   function sufficientSouls() {
     if (souls >= 200) {
       navigate("/question");
@@ -38,7 +42,7 @@ const QuestionList = () => {
 
   return (
     <div className="homepage-container">
-      <p className="titl">Choose your destiny</p>
+      <p className="titl">Choose your fate.</p>
       <div className="buttons">
         <div className="button-underlyingtext-container">
           <a onClick={handleClick} className="image-container">
@@ -49,7 +53,7 @@ const QuestionList = () => {
             />
             <div className="overlay-text">Basic math</div>
           </a>
-          <div className="underlying-text">Souls needed: 50</div>
+          {(souls < 50) ? <div className="underlying-text">Souls needed: 50</div> : <div></div>}
         </div>
         <div>
           <a onClick={sufficientSouls} className="image-container">
@@ -68,7 +72,7 @@ const QuestionList = () => {
             )}
             <div className="overlay-text">Algebra</div>
           </a>
-          <div className="underlying-text">Souls needed: 200</div>
+          {(souls < 200) ? <div className="underlying-text">Souls needed: 200</div> : <div></div>}
         </div>
         <div>
           <a onClick={sufficientSouls2} className="image-container">
@@ -85,10 +89,15 @@ const QuestionList = () => {
                 style={{ opacity: 1 }}
               />
             )}
-            <div className="overlay-text">Algebra</div>
+            <div className="overlay-text">Calculus</div>
           </a>
-          <div className="underlying-text">Souls needed: 600</div>
+          {(souls < 600) ? <div className="underlying-text">Souls needed: 600</div> : <div></div>}
         </div>
+      </div>
+      <div className="backButton-text-container">
+        <a onClick={backMenu}>
+            <div className="backButton-text">Return to menu</div>  
+        </a>
       </div>
     </div>
   );

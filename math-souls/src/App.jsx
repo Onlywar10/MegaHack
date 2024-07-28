@@ -8,6 +8,7 @@ import QuestionList from "./pages/QuestionList";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
+import SecretBenson from "./pages/SecretBenson";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -39,6 +40,7 @@ function App() {
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
+        <Route path="/benson" element={<SecretBenson />} />
       </Routes>
     </BrowserRouter>
   );
