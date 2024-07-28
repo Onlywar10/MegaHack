@@ -42,12 +42,4 @@ const Home = ({ setAuth }) => {
   );
 };
 
-const button2 = () => {
-  return (
-    <div>
-      <button>button2</button>
-    </div>
-  );
-};
-
 export default Home;

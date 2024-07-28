@@ -44,9 +44,9 @@
 }
 
 .overlay-text {
-    font-family: 'Gloria', sans-serif;
+    font-family: 'EB Garamond', serif;
     position: absolute;
-    font-size: 20pt;
+    font-size: 30px;
     line-height: 1.3;
     text-align: center;
     top: 50%;  /* Center vertically */
