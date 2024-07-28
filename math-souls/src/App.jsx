@@ -8,6 +8,7 @@ import QuestionList from "./pages/QuestionList";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
+import SecretBenson from "./pages/SecretBenson";
 import BossList from "./pages/BossList";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
+        <Route path="/benson" element={<SecretBenson />} />
         <Route
           path="bossList"
           element={<BossList setUserUpdate={setUserUpdate} />}
