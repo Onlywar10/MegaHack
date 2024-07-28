@@ -9,6 +9,9 @@ const Home = () => {
   function handleClick() {
     navigate('/question');
   }
+  function toList(){
+    navigate('/list');
+  }
 
   return (
     <body>
@@ -16,7 +19,7 @@ const Home = () => {
         Welcome player! What would you like to do?
       </p>
       <div className="buttons">
-        <a onClick={handleClick} class="image-container">
+        <a onClick={toList} class="image-container">
           <img src={devil} alt="Local Image" style={{border: 'none'}}/>
           <div class="overlay-text">Tackle an enemy</div>
         </a>
