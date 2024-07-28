@@ -1,16 +1,40 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import QuestionPage from "./pages/QuestionPage";
 import QuestionList from "./pages/QuestionList";
 function App() {
+  const [auth, setAuth] = useState(false);
+  // This state is here for the purpose of updating the navbar
+  const [userUpdate, setUserUpdate] = useState(0);
+
+  useEffect(() => {
+    if (localStorage.getItem("userID") == null) {
+      setAuth(false);
+    } else {
+      setAuth(true);
+    }
+  }, []);
+
   return (
     <BrowserRouter>
+      {auth && <Navbar setAuth={setAuth} userUpdate={userUpdate} />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setAuth={setAuth} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/question" element={<QuestionPage />} />
         <Route path="/list" element={<QuestionList />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/question/:category"
+          element={<QuestionPage setUserUpdate={setUserUpdate} />}
+        />
+        <Route
+          path="/gauntlet/:category"
+          element={<Gauntlet setUserUpdate={setUserUpdate} />}
+        />
       </Routes>
     </BrowserRouter>
   );

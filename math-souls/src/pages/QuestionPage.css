@@ -1,0 +1,22 @@
+/* QuestionPage.css */
+.full-height-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px; /* Adjust the value as needed */ 
+  }
+  
+  .fade-in {
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+  }
+  

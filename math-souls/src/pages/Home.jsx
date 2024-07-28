@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import devil from "../assets/Devil_Fruits_10.png";
