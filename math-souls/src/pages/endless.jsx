@@ -7,7 +7,7 @@ import useSound from "use-sound";
 
 import { supabase } from "../supabase";
 import { deathSound } from "../assets";
-import "./endless.css";
+import "./Endless.css";
 
 const Endless = ({ setUserUpdate }) => {
   const quipList = [

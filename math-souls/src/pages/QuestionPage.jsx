@@ -28,7 +28,7 @@ const QuestionPage = ({ setUserUpdate }) => {
     const fetchQuestion = async () => {
       try {
         const response = await axios.get('http://localhost:5000/question/', {
-          params: { category: category || 'basic_math' },
+        params: { category: category || 'basic_math' },
         });
         setQuestion(response.data.problem);
         setCorrectAnswer(parseInt(response.data.solution, 10));
@@ -37,7 +37,6 @@ const QuestionPage = ({ setUserUpdate }) => {
         setError('Failed to fetch question');
       }
     };
-
     fetchQuestion();
     setTimeout(() => {
       setVisible(true);

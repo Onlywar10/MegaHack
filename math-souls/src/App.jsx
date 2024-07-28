@@ -7,7 +7,7 @@ import QuestionPage from "./pages/QuestionPage";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Gauntlet from "./pages/Gauntlet";
-
+import Endless from "./pages/endless";
 function App() {
   const [auth, setAuth] = useState(false);
   // This state is here for the purpose of updating the navbar
@@ -33,8 +33,9 @@ function App() {
           path="/gauntlet/:category"
           element={<Gauntlet setUserUpdate={setUserUpdate} />}
         />
-      </Routes>
-    </BrowserRouter>
+        <Route path="/endless" element={<Endless />} />
+      </Routes>    
+      </BrowserRouter>
   );
 }
 
