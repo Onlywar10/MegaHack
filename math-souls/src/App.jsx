@@ -5,6 +5,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import QuestionPage from "./pages/QuestionPage";
 import QuestionList from "./pages/QuestionList";
+import Register from "./pages/Register";
+import Navbar from "./components/Navbar";
+import Gauntlet from "./pages/Gauntlet";
+
 function App() {
   const [auth, setAuth] = useState(false);
   // This state is here for the purpose of updating the navbar
