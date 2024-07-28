@@ -6,7 +6,7 @@ import { supabase } from "../supabase";
 import { knightPFP } from "../assets/index";
 import "./Navbar.css";
 
-const Navbar = ({ setAuth }) => {
+const Navbar = ({ setAuth, userUpdate }) => {
   const [userData, setUserData] = useState({});
   const [toggleSignOut, setToggleSignOut] = useState(false);
 
@@ -14,7 +14,7 @@ const Navbar = ({ setAuth }) => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [userUpdate]);
 
   const fetchUser = async () => {
     let { data: user, error } = await supabase
