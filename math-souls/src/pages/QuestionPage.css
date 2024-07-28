@@ -1,0 +1,27 @@
+/* QuestionPage.css */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+body, h1, h2, h3, h4, h5, h6, p, div, span {
+  font-family: 'EB Garamond', serif;
+}
+.full-height-center {
+    font-family: "EB Garamond", serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px; /* Adjust the value as needed */ 
+  }
+  
+  .fade-in {
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+  }
+  

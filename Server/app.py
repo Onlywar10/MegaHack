@@ -48,7 +48,7 @@ def getQuestion():
 
                 questionType = "Multiplication"
             if (index == 3):
-                problem, solution = mathgenerator.division(144, 12)
+                problem, solution = mathgenerator.division(12, 12)
 
                 # return string cleanup
                 problem = problem.replace("$", "")
@@ -81,7 +81,7 @@ def getQuestion():
                 problem = problem.replace("$", "")
                 solution = solution.replace("$", "")
 
-                questionType = "Basic Algebra"
+                questionType = "Basic Algebra (Solve for x)"
             if (index == 1):
                 problem, solution = mathgenerator.combine_like_terms(10, 3, 5)
 
@@ -94,10 +94,12 @@ def getQuestion():
                 problem = problem.replace("$", "")
                 problem = problem.replace("{", "")
                 problem = problem.replace("}", "")
+                problem = problem.replace("^1", "")
                 solution = solution.replace("$", "")
-                solution = solution.replace(" + ", "+")
                 solution = solution.replace("{", "")
                 solution = solution.replace("}", "")
+                solution = solution.replace("^1", "")
+                solution = solution.replace(" + ", "+")
 
                 questionType = "Combining Like Terms"
             if (index == 2):
@@ -114,6 +116,9 @@ def getQuestion():
                 # return string cleanup
                 problem = problem.replace("$", "")
                 solution = solution.replace("$", "")
+                solution = solution.replace(" = ", "")
+                solution = solution.replace("x", "")
+                solution = solution.replace(" y", "")
 
                 questionType = "Linear Equations"
             if (index == 4):
@@ -124,6 +129,9 @@ def getQuestion():
                 problem = problem.replace("$", "")
                 problem = problem.replace("y.", "y")
                 solution = solution.replace("$", "")
+                solution = solution.replace(" = ", "")
+                solution = solution.replace("x", "")
+                solution = solution.replace(" y", "")
 
                 questionType = "System of Equations"
 
