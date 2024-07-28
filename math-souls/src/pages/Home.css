@@ -11,6 +11,13 @@
     font-style: normal; /* Normal style */
 }
 
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .titl{
     font-family: 'EB', sans-serif;
     color: white; 
@@ -19,22 +26,21 @@
     align-items: center;
     font-size: 40pt;
     height: 40vh;
+
 }
 
 .buttons{
     display: flex; 
-    justify-content: center; 
+    flex-direction: row;
+    justify-content: space-evenly; 
     align-items: center;
+    width: 50%;
 }
 
 .buttons img {
     width: 242px; /* Set image width */
     height: 127px; /* Set image height */
     margin-right: 10px; /* Space between image and text */
-}
-
-.buttons:hover {
-    cursor: pointer;
 }
 
 .overlay-text {
@@ -52,4 +58,9 @@
 .image-container {
     position: relative;
     display: inline-block;
+}
+
+.image-container:hover {
+    opacity: 0.9;
+    cursor: pointer;
 }

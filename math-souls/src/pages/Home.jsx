@@ -18,27 +18,27 @@ const Home = ({ setAuth }) => {
   }
 
   return (
-    <body>
+    <div className="homepage-container">
       <p className="titl">Welcome Traveler. A new day dawns.</p>
       <div className="buttons">
-        <a onClick={toList} class="image-container">
+        <a onClick={toList} className="image-container">
           <img
             src={buttonBackground}
             alt="Local Image"
             style={{ border: "none" }}
           />
-          <div class="overlay-text">Tackle an enemy</div>
+          <div className="overlay-text">Tackle an enemy</div>
         </a>
-        <a onClick={handleClick} class="image-container">
+        <a onClick={handleClick} className="image-container">
           <img
             src={buttonBackground}
             alt="Local Image"
             style={{ border: "none" }}
           />
-          <div class="overlay-text">Tackle the boss</div>
+          <div className="overlay-text">Tackle the boss</div>
         </a>
       </div>
-    </body>
+    </div>
   );
 };
 

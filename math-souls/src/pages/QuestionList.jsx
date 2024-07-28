@@ -37,7 +37,7 @@ const QuestionList = () => {
   }
 
   return (
-    <div>
+    <div className="homepage-container">
       <p className="titl">Choose your destiny</p>
       <div className="buttons">
         <div>
